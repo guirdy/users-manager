@@ -4,11 +4,20 @@ API do gerenciador de usuários feita em .NET 6 e banco de dados MySQL.
 
 ## Como rodar o projeto
 Clone o repositório
+
+Via HTTP:
 ```bash
-git clone https://
+git clone https://github.com/guirdy/users-manager.git
 ```
 
-Entre na pasta do projeto
+ou
+
+Via SSH:
+```bash
+git clone git@github.com:guirdy/users-manager.git
+```
+
+Entre na pasta do backend do projeto
 ```bash
 cd users-manager/users-manager-api
 ```
