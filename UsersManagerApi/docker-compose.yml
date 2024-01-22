@@ -1,0 +1,9 @@
+services:
+  db:
+    image: mysql
+    container_name: usersmanager
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: 'usersmanager'
+      MYSQL_ROOT_PASSWORD: '123456'
