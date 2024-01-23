@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UsersManagerApi.Model
 {
@@ -21,5 +22,9 @@ namespace UsersManagerApi.Model
         public string EmailOrPhone { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; }
+
+        [Required]
+        [ForeignKey("PhysicalPersonId")]
+        public Guid PhysicalPersonId { get; set; }
     }
 }

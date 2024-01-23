@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata;
 
 namespace UsersManagerApi.Model
 {
@@ -19,7 +18,9 @@ namespace UsersManagerApi.Model
         public string Password { get; set; }
         [Required(ErrorMessage = "Telefone é obrigatório.")]
         public string Phone { get; set; }
-        public List<PhysicalPerson>? PhysicalPerson { get; set; }
+        [Required(ErrorMessage = "Pessoa física é obrigatória.")]
+        [MinLength(1, ErrorMessage = "Deve haver pelo menos uma pessoa física.")]
+        public List<PhysicalPerson> PhysicalPersons { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; }
     }

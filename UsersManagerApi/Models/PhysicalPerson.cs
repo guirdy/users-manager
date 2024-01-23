@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UsersManagerApi.Model
 {
@@ -23,12 +24,19 @@ namespace UsersManagerApi.Model
         public string RG { get; set; }
 
         // Endereço
-        [Required(ErrorMessage = "Ao menos um endereço é obrigatório.")]
+        [Required(ErrorMessage = "Endereço é obrigatório.")]
+        [MinLength(1, ErrorMessage = "Deve haver pelo menos um endereço.")]
         public List<Address> Addresses { get; set; }
 
         // Contato
+        [Required(ErrorMessage = "Contato é obrigatório.")]
+        [MinLength(1, ErrorMessage = "Deve haver pelo menos um contato.")]
         public List<Contact> Contacts { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; }
+
+        [Required]
+        [ForeignKey("UserId")]
+        public Guid UserId { get; set; }
     }
 }

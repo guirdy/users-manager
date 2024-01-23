@@ -39,7 +39,7 @@ namespace UsersManagerApi.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<Guid?>("PhysicalPersonId")
+                    b.Property<Guid>("PhysicalPersonId")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("PostalCode")
@@ -61,7 +61,7 @@ namespace UsersManagerApi.Migrations
 
                     b.HasIndex("PhysicalPersonId");
 
-                    b.ToTable("Address");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("UsersManagerApi.Model.Contact", b =>
@@ -81,7 +81,7 @@ namespace UsersManagerApi.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<Guid?>("PhysicalPersonId")
+                    b.Property<Guid>("PhysicalPersonId")
                         .HasColumnType("char(36)");
 
                     b.Property<int>("Type")
@@ -94,7 +94,7 @@ namespace UsersManagerApi.Migrations
 
                     b.HasIndex("PhysicalPersonId");
 
-                    b.ToTable("Contact");
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("UsersManagerApi.Model.PhysicalPerson", b =>
@@ -133,14 +133,14 @@ namespace UsersManagerApi.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<Guid?>("UserId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("PhysicalPerson");
+                    b.ToTable("PhysicalPersons");
                 });
 
             modelBuilder.Entity("UsersManagerApi.Model.User", b =>
@@ -185,21 +185,27 @@ namespace UsersManagerApi.Migrations
                 {
                     b.HasOne("UsersManagerApi.Model.PhysicalPerson", null)
                         .WithMany("Addresses")
-                        .HasForeignKey("PhysicalPersonId");
+                        .HasForeignKey("PhysicalPersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("UsersManagerApi.Model.Contact", b =>
                 {
                     b.HasOne("UsersManagerApi.Model.PhysicalPerson", null)
                         .WithMany("Contacts")
-                        .HasForeignKey("PhysicalPersonId");
+                        .HasForeignKey("PhysicalPersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("UsersManagerApi.Model.PhysicalPerson", b =>
                 {
                     b.HasOne("UsersManagerApi.Model.User", null)
-                        .WithMany("PhysicalPerson")
-                        .HasForeignKey("UserId");
+                        .WithMany("PhysicalPersons")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("UsersManagerApi.Model.PhysicalPerson", b =>
@@ -211,7 +217,7 @@ namespace UsersManagerApi.Migrations
 
             modelBuilder.Entity("UsersManagerApi.Model.User", b =>
                 {
-                    b.Navigation("PhysicalPerson");
+                    b.Navigation("PhysicalPersons");
                 });
 #pragma warning restore 612, 618
         }

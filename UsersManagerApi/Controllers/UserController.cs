@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using UsersManagerApi.Data;
 using UsersManagerApi.Data.Dtos.User;
 using UsersManagerApi.Model;
+using UsersManagerApi.Utils;
 
 namespace UsersManagerApi.Controllers
 {
@@ -13,6 +14,7 @@ namespace UsersManagerApi.Controllers
     {
         private AppDbContext _context;
         private IMapper _mapper;
+        private PwdHash _pwdHash = new PwdHash();
 
         public UserController(AppDbContext context, IMapper mapper)
         {
@@ -24,9 +26,20 @@ namespace UsersManagerApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IEnumerable<GetUserDto> GetUsers(
             [FromQuery] int skip = 0,
-            [FromQuery] int take = 10)
+            [FromQuery] int take = 50)
         {
             var users = _mapper.Map<List<GetUserDto>>(_context.Users.Skip(skip).Take(take).ToArray());
+
+            users.ForEach(user => user.PhysicalPersons = _context.PhysicalPersons.Where(person => person.UserId == user.Id).ToList());
+
+            users.ForEach(user => user.PhysicalPersons.ForEach(
+                person => person.Addresses = _context.Addresses.Where(
+                    address => address.PhysicalPersonId == person.Id).ToList()));
+
+            users.ForEach(user => user.PhysicalPersons.ForEach(
+                person => person.Contacts = _context.Contacts.Where(
+                    contact => contact.PhysicalPersonId == person.Id).ToList()));
+
             return users;
         }
 
@@ -50,6 +63,16 @@ namespace UsersManagerApi.Controllers
 
             var userDto = _mapper.Map<GetUserDto>(user);
 
+            userDto.PhysicalPersons = _context.PhysicalPersons.Where(person => person.UserId == userDto.Id).ToList();
+
+            userDto.PhysicalPersons.ForEach(
+                person => person.Addresses = _context.Addresses.Where(
+                    address => address.PhysicalPersonId == person.Id).ToList());
+
+            userDto.PhysicalPersons.ForEach(
+                person => person.Contacts = _context.Contacts.Where(
+                    contact => contact.PhysicalPersonId == person.Id).ToList());
+
             return Ok(userDto);
         }
 
@@ -67,6 +90,7 @@ namespace UsersManagerApi.Controllers
             }
 
             User user = _mapper.Map<User>(userDto);
+            user.Password = _pwdHash.HashPassword(user.Password);
 
             _context.Users.Add(user);
             _context.SaveChanges();

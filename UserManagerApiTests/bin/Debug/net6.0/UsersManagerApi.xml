@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UsersManagerApi</name>
+    </assembly>
+    <members>
+        <member name="M:UsersManagerApi.Controllers.UserController.UpdateUserData(System.String,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{UsersManagerApi.Data.Dtos.User.UpdateUserDto})">
+            <remarks>
+                <summary>
+                    Somente "op", "path" e "value são obrigatórios.
+                </summary>
+                <summary>
+                    "op" é a operação de patch, deve ser utilizado o valor "replace".
+                </summary>
+                <summary>
+                    "path" é o nome do atributo a ser atualizado.
+                </summary>
+                <summary>
+                    "value" o novo valor atualizado do atributo.
+                </summary>
+            </remarks>
+        </member>
+    </members>
+</doc>

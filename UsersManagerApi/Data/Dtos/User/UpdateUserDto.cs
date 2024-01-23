@@ -14,6 +14,8 @@ namespace UsersManagerApi.Data.Dtos.User
         public string Email { get; set; }
         [Required(ErrorMessage = "Senha é obrigatória.")]
         public string Phone { get; set; }
-        public List<PhysicalPerson>? PhysicalPerson { get; set; }
+        [Required(ErrorMessage = "Pessoa física é obrigatória.")]
+        [MinLength(1, ErrorMessage = "Deve haver pelo menos uma pessoa física.")]
+        public List<PhysicalPerson> PhysicalPersons { get; set; }
     }
 }

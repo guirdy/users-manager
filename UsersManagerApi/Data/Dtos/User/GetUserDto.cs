@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using UsersManagerApi.Model;
+﻿using UsersManagerApi.Model;
 
 namespace UsersManagerApi.Data.Dtos.User
 {
@@ -10,7 +9,7 @@ namespace UsersManagerApi.Data.Dtos.User
         public string UserName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public List<PhysicalPerson>? PhysicalPerson { get; set; }
+        public List<PhysicalPerson> PhysicalPersons { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }
