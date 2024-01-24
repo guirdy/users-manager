@@ -58,9 +58,9 @@ namespace UsersManagerApi.Controllers
                 return Conflict("Email já cadastrado.");
             }
 
-            
+            GetUserDto createdUser = _userServices.CreateUser(userDto);
 
-            return CreatedAtAction("GetUserById", new { id = user.Id }, user);
+            return CreatedAtAction("GetUserById", new { id = createdUser.Id }, createdUser);
         }
 
         /// <remarks>
