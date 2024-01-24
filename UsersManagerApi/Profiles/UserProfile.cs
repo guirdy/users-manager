@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using UsersManagerApi.Data.Dtos.User;
+using UsersManagerApi.Data.Dtos.UserDtos;
 using UsersManagerApi.Model;
 
 namespace UsersManagerApi.Profiles

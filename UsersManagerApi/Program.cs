@@ -2,13 +2,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using UsersManagerApi.Data;
+using UsersManagerApi.Repositories;
+using UsersManagerApi.Repositories.Interfaces;
+using UsersManagerApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Add Controllers and NewtonsoftJson
 builder.Services.AddControllers().AddNewtonsoftJson();
 
+// Register the Swagger generator, and xml comments
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -22,8 +25,8 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add Database Context
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
@@ -31,6 +34,16 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Add Auto Mapper Config
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+// Add Repositories and Services Injection
+builder.Services.AddScoped<UserServices>();
+builder.Services.AddScoped<PhysicalPersonServices>();
+builder.Services.AddScoped<ContactServices>();
+builder.Services.AddScoped<AddressServices>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPhysicalPersonRepository, PhysicalPersonRepository>();
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
+builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 
 var app = builder.Build();
 

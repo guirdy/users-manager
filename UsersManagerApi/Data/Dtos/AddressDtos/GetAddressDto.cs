@@ -1,13 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace UsersManagerApi.Model
+namespace UsersManagerApi.Data.Dtos.AddressDtos
 {
-    public class Address
+    public class GetAddressDto
     {
         [Key]
         [Required]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; }
         [Required(ErrorMessage = "Logradouro é obrigatório.")]
         public string Street { get; set; }
         [Required(ErrorMessage = "Número é obrigatório.")]
@@ -19,7 +19,7 @@ namespace UsersManagerApi.Model
         public string City { get; set; }
         [Required(ErrorMessage = "Estado é obrigatório.")]
         public string State { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
         // Relacionamentos

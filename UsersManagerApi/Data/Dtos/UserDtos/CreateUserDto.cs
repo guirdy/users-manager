@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using UsersManagerApi.Model;
 
-namespace UsersManagerApi.Data.Dtos.User
+namespace UsersManagerApi.Data.Dtos.UserDtos
 {
-    public class UpdateUserDto
+    public class CreateUserDto
     {
         [Required(ErrorMessage = "Nome obrigatório.")]
         [StringLength(50, ErrorMessage = "O nome possui muitos caracteres.")]
@@ -13,9 +13,9 @@ namespace UsersManagerApi.Data.Dtos.User
         [Required(ErrorMessage = "Email é obrigatório.")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Senha é obrigatória.")]
+        public string Password { get; set; }
+        [Required(ErrorMessage = "Telefone é obrigatório.")]
         public string Phone { get; set; }
-        [Required(ErrorMessage = "Pessoa física é obrigatória.")]
-        [MinLength(1, ErrorMessage = "Deve haver pelo menos uma pessoa física.")]
-        public List<PhysicalPerson> PhysicalPersons { get; set; }
+        public List<PhysicalPerson>? PhysicalPersons { get; set; }
     }
 }

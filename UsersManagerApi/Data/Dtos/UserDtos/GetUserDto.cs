@@ -1,6 +1,7 @@
-﻿using UsersManagerApi.Model;
+﻿using UsersManagerApi.Data.Dtos.PhysicalPersonDtos;
+using UsersManagerApi.Model;
 
-namespace UsersManagerApi.Data.Dtos.User
+namespace UsersManagerApi.Data.Dtos.UserDtos
 {
     public class GetUserDto
     {
@@ -9,7 +10,7 @@ namespace UsersManagerApi.Data.Dtos.User
         public string UserName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public List<PhysicalPerson> PhysicalPersons { get; set; }
+        public List<GetPhysicalPersonDto>? PhysicalPersons { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

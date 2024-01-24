@@ -1,14 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using UsersManagerApi.Model;
 
-namespace UsersManagerApi.Model
+namespace UsersManagerApi.Data.Dtos.PhysicalPersonDtos
 {
-    public class PhysicalPerson
+    public class UpdatePhysicalPersonDto
     {
-        [Key]
-        [Required]
-        public Guid Id { get; set; } = Guid.NewGuid();
-
         // Dados pessoais
         [Required(ErrorMessage = "Nome de pessoa física é obrigatório.")]
         public string Name { get; set; }
@@ -37,7 +34,6 @@ namespace UsersManagerApi.Model
         [Required(ErrorMessage = "Contato é obrigatório.")]
         [MinLength(1, ErrorMessage = "Deve haver pelo menos um contato.")]
         public List<Contact> Contacts { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public DateTime UpdatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
     }
 }

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using UsersManagerApi.Data;
+using UsersManagerApi.Model;
+using UsersManagerApi.Services;
 
 namespace UsersManagerApi.Controllers
 {
@@ -8,19 +10,26 @@ namespace UsersManagerApi.Controllers
     [Route("api/v1/physical-persons")]
     public class PhysicalPersonController : ControllerBase
     {
-        private AppDbContext _context;
-        private IMapper _mapper;
+        private readonly PhysicalPersonServices _physicalPersonServices;
 
-        PhysicalPersonController(AppDbContext context, IMapper mapper)
+        public PhysicalPersonController(PhysicalPersonServices physicalPersonServices)
         {
-            _context = context;
-            _mapper = mapper;
+            _physicalPersonServices = physicalPersonServices;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetPhysicalPersonById([FromRoute] string id)
+        [HttpGet("{userId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult GetAll(string userId)
         {
-            return Ok();
+            if (!Guid.TryParse(userId, out var parseId))
+            {
+                return BadRequest("ID inválido.");
+            }
+
+            var physicalPerson = _physicalPersonServices.GetAllPhysicalPersons(parseId);
+
+            return Ok(physicalPerson);
         }
     }
 }
