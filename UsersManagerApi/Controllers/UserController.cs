@@ -1,10 +1,7 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.JsonPatch;
+﻿using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using UsersManagerApi.Data.Dtos.UserDtos;
-using UsersManagerApi.Model;
 using UsersManagerApi.Services;
-using UsersManagerApi.Utils;
 
 namespace UsersManagerApi.Controllers
 {
@@ -14,7 +11,6 @@ namespace UsersManagerApi.Controllers
     {
         private readonly UserServices _userServices;
         private readonly PhysicalPersonServices _physicalPersonServices;
-        private PwdHash _pwdHash = new PwdHash();
 
         public UserController(UserServices userServices, PhysicalPersonServices physicalPersonServices)
         {
@@ -60,7 +56,7 @@ namespace UsersManagerApi.Controllers
 
             GetUserDto createdUser = _userServices.CreateUser(userDto);
 
-            return CreatedAtAction("GetUserById", new { id = createdUser.Id }, createdUser);
+            return CreatedAtAction("GetUserById", new { userId = createdUser.Id }, createdUser);
         }
 
         /// <remarks>
@@ -77,60 +73,49 @@ namespace UsersManagerApi.Controllers
         ///         "value" o novo valor atualizado do atributo.
         ///     </summary>
         /// </remarks>
-        [HttpPatch("{id}")]
+        [HttpPatch("{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult UpdateUserData(
-            [FromRoute] string id,
+            [FromRoute] string userId,
             [FromBody] JsonPatchDocument<UpdateUserDto> patch)
         {
-            if (!Guid.TryParse(id, out var parseId))
+            if (!Guid.TryParse(userId, out var parseId))
             {
                 return BadRequest("ID inválido.");
             }
 
-            User? user = _context.Users.FirstOrDefault(user => user.Id == parseId);
+            GetUserDto? user = _userServices.GetUserById(parseId);
 
             if (user == null)
             {
                 return NotFound("Usuário não encontrado.");
             }
 
-            var userToUpdate = _mapper.Map<UpdateUserDto>(user);
-
-            patch.ApplyTo(userToUpdate, ModelState);
-
-            if (!TryValidateModel(userToUpdate))
-            {
-                return ValidationProblem(ModelState);
-            }
-
-            _mapper.Map(userToUpdate, user);
-            _context.SaveChanges();
+            _userServices.UpdateUser(user, patch, ModelState);
 
             return Ok();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult DeleteUser ([FromRoute] string id)
+        public IActionResult DeleteUser ([FromRoute] string userId)
         {
-            if (!Guid.TryParse(id, out var parseId))
+            if (!Guid.TryParse(userId, out var parseId))
             {
                 return BadRequest("ID inválido.");
             }
 
-            User? user = _context.Users.FirstOrDefault(user => user.Id == parseId);
+            GetUserDto? user = _userServices.GetUserById(parseId);
 
             if (user == null)
             {
                 return NotFound("Usuário não encontrado.");
             }
 
-            _context.Users.Remove(user);
-            _context.SaveChanges();
+            _userServices.DeleteUser(parseId);
 
             return Ok();
         }

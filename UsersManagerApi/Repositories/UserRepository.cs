@@ -1,4 +1,5 @@
-﻿using UsersManagerApi.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using UsersManagerApi.Data;
 using UsersManagerApi.Data.Dtos.UserDtos;
 using UsersManagerApi.Model;
 using UsersManagerApi.Repositories.Interfaces;
@@ -35,14 +36,15 @@ namespace UsersManagerApi.Repositories
             return user;
         }
 
-        public User UpdateUser(User user)
+        public void UpdateUser()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
 
-        public void DeleteUser(Guid userId)
+        public void DeleteUser(User user)
         {
-            throw new NotImplementedException();
+            _context.Users.Remove(user);
+            _context.SaveChanges();
         }
     }
 }

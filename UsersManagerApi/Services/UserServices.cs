@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using UsersManagerApi.Data.Dtos.UserDtos;
 using UsersManagerApi.Model;
 using UsersManagerApi.Repositories.Interfaces;
@@ -38,6 +40,31 @@ namespace UsersManagerApi.Services
             User createdUser = _userRepository.CreateUser(user);
 
             return _mapper.Map<GetUserDto>(createdUser);
+        }
+
+        public void UpdateUser(
+            GetUserDto user,
+            JsonPatchDocument<UpdateUserDto> patch,
+            ModelStateDictionary modelState)
+        {
+            User originalUser = _userRepository.GetUserById(user.Id);
+            UpdateUserDto userToUpdate = _mapper.Map<UpdateUserDto>(originalUser);
+
+            patch.ApplyTo(userToUpdate, modelState);
+
+            if (!modelState.IsValid)
+            {
+                throw new Exception("Ocorreu um erro ao atualizar o usuário.");
+            }
+
+            _mapper.Map(userToUpdate, originalUser);
+            _userRepository.UpdateUser();
+        }
+
+        public void DeleteUser(Guid userId)
+        {
+            User? user = _userRepository.GetUserById(userId);
+            _userRepository.DeleteUser(user);
         }
     }
 }
