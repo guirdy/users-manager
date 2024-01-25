@@ -1,4 +1,5 @@
-﻿using UsersManagerApi.Data;
+﻿using System.Net;
+using UsersManagerApi.Data;
 using UsersManagerApi.Model;
 using UsersManagerApi.Repositories.Interfaces;
 
@@ -19,24 +20,29 @@ namespace UsersManagerApi.Repositories
             return contacts;
         }
 
-        public Contact GetContactById(Guid contactId)
+        public Contact? GetContactById(Guid contactId)
         {
-            throw new NotImplementedException();
+            Contact? contact = _context.Contacts.FirstOrDefault(contact => contact.Id == contactId);
+            return contact;
         }
 
         public Contact CreateContact(Contact contact)
         {
-            throw new NotImplementedException();
+            _context.Contacts.Add(contact);
+            _context.SaveChanges();
+
+            return contact;
         }
 
-        public Contact UpdateContact(Contact contact)
+        public void UpdateContact()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
 
-        public void DeleteContact(Guid contactId)
+        public void DeleteContact(Contact contact)
         {
-            throw new NotImplementedException();
+            _context.Contacts.Remove(contact);
+            _context.SaveChanges();
         }
     }
 }

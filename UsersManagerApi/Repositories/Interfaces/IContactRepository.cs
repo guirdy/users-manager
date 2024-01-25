@@ -7,7 +7,7 @@ namespace UsersManagerApi.Repositories.Interfaces
         List<Contact> GetAllContacts(Guid physicalPersonId);
         Contact GetContactById(Guid contactId);
         Contact CreateContact(Contact contact);
-        Contact UpdateContact(Contact contact);
-        void DeleteContact(Guid contactId);
+        void UpdateContact();
+        void DeleteContact(Contact contactId);
     }
 }

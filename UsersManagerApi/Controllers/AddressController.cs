@@ -31,7 +31,7 @@ namespace UsersManagerApi.Controllers
                 return BadRequest("ID inválido.");
             }
 
-            var addresses = _service.GetAllAddresses(parseId);
+            List<GetAddressDto> addresses = _service.GetAllAddresses(parseId);
 
             if (addresses == null)
             {
@@ -52,7 +52,7 @@ namespace UsersManagerApi.Controllers
                 return BadRequest("ID inválido.");
             }
 
-            var address = _service.GetAddressById(parseId);
+            GetAddressDto address = _service.GetAddressById(parseId);
 
             if (address == null)
             {
