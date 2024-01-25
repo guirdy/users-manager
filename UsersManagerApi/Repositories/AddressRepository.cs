@@ -19,7 +19,7 @@ namespace UsersManagerApi.Repositories
             return addresses;
         }
 
-        public Address GetAddressById(Guid addressId)
+        public Address? GetAddressById(Guid addressId)
         {
             Address? address = _context.Addresses.FirstOrDefault(address => address.Id == addressId);
             return address;
@@ -33,23 +33,15 @@ namespace UsersManagerApi.Repositories
             return address;
         }
 
-        public Address UpdateAddress(Address address)
+        public void UpdateAddress()
         {
-            _context.Addresses.Update(address);
             _context.SaveChanges();
-
-            return address;
         }
 
-        public void DeleteAddress(Guid addressId)
+        public void DeleteAddress(Address address)
         {
-            var address = _context.Addresses.FirstOrDefault(address => address.Id == addressId);
-
-            if (address != null)
-            {
-                _context.Addresses.Remove(address);
-                _context.SaveChanges();
-            }
+            _context.Addresses.Remove(address);
+            _context.SaveChanges();
         }
     }
 }

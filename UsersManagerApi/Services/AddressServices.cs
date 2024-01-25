@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using UsersManagerApi.Data.Dtos.AddressDtos;
+using UsersManagerApi.Data.Dtos.PhysicalPersonDtos;
 using UsersManagerApi.Model;
 using UsersManagerApi.Repositories.Interfaces;
 
@@ -30,21 +34,34 @@ namespace UsersManagerApi.Services
 
         public GetAddressDto CreateAddress(CreateAddressDto addressDto)
         {
-            var address = _mapper.Map<Address>(addressDto);
+            Address address = _mapper.Map<Address>(addressDto);
             address = _repository.CreateAddress(address);
             return _mapper.Map<GetAddressDto>(address);
         }
 
-        public GetAddressDto UpdateAddress(UpdateAddressDto addressDto)
+        public void UpdateAddress(
+            GetAddressDto addressDto,
+            JsonPatchDocument<UpdateAddressDto> patch,
+            ModelStateDictionary modelState)
         {
-            var address = _mapper.Map<Address>(addressDto);
-            address = _repository.UpdateAddress(address);
-            return _mapper.Map<GetAddressDto>(address);
+            Address originalAddress = _repository.GetAddressById(addressDto.Id);
+            UpdateAddressDto addressToUpdate = _mapper.Map<UpdateAddressDto>(originalAddress);
+
+            patch.ApplyTo(addressToUpdate, modelState);
+
+            if (!modelState.IsValid)
+            {
+                throw new Exception("Ocorreu um erro ao atualizar endereço.");
+            }
+
+            _mapper.Map(addressToUpdate, originalAddress);
+            _repository.UpdateAddress();
         }
 
-        public void DeleteAddress(Guid addressId)
+        public void DeleteAddress(GetAddressDto address)
         {
-            _repository.DeleteAddress(addressId);
+            Address originalAddress = _repository.GetAddressById(address.Id);
+            _repository.DeleteAddress(originalAddress);
         }
     }
 }

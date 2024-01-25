@@ -7,7 +7,7 @@ namespace UsersManagerApi.Repositories.Interfaces
         List<Address> GetAllAddresses(Guid physicalPersonId);
         Address GetAddressById(Guid addressId);
         Address CreateAddress(Address address);
-        Address UpdateAddress(Address address);
-        void DeleteAddress(Guid addressId);
+        void UpdateAddress();
+        void DeleteAddress(Address address);
     }
 }
