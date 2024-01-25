@@ -9,9 +9,9 @@ namespace UsersManagerApi.Profiles
         public ContactProfile()
         {
             CreateMap<Contact, GetContactDto>();
-            // CreateMap<CreateContactDto, Contact>();
-            // CreateMap<UpdateContactDto, Contact>();
-            // CreateMap<Contact, UpdateContactDto>();
+            CreateMap<CreateContactDto, Contact>();
+            CreateMap<UpdateContactDto, Contact>();
+            CreateMap<Contact, UpdateContactDto>();
         }
     }
 }

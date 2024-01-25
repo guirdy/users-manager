@@ -1,5 +1,5 @@
-﻿using UsersManagerApi.Data.Dtos.PhysicalPersonDtos;
-using UsersManagerApi.Model;
+﻿using System.Runtime.Serialization;
+using UsersManagerApi.Data.Dtos.PhysicalPersonDtos;
 
 namespace UsersManagerApi.Data.Dtos.UserDtos
 {

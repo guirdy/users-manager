@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UsersManagerApi.Data.Dtos.ContactDtos;
+using UsersManagerApi.Data.SwaggerContracts;
 using UsersManagerApi.Services;
 
 namespace UsersManagerApi.Controllers
 {
     [ApiController]
-    [Route("api/v1/physical-persons")]
+    [Route("api/v1/physical-person")]
     public class ContactController : ControllerBase
     {
         private readonly ContactServices _contactServices;
@@ -15,7 +16,7 @@ namespace UsersManagerApi.Controllers
         }
         
         [HttpGet("{physicalPersonId}/contacts")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ContactContract>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetContacts([FromRoute] string physicalPersonId)

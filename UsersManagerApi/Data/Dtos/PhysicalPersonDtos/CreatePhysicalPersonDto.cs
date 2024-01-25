@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using UsersManagerApi.Model;
 using UsersManagerApi.Data.Dtos.AddressDtos;
 using UsersManagerApi.Data.Dtos.ContactDtos;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace UsersManagerApi.Data.Dtos.PhysicalPersonDtos
 {

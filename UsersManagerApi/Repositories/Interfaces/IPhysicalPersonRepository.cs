@@ -1,4 +1,5 @@
-﻿using UsersManagerApi.Model;
+﻿using UsersManagerApi.Data.Dtos.PhysicalPersonDtos;
+using UsersManagerApi.Model;
 
 namespace UsersManagerApi.Repositories.Interfaces
 {
@@ -6,8 +7,9 @@ namespace UsersManagerApi.Repositories.Interfaces
     {
         List<PhysicalPerson> GetAllPhysicalPersons(Guid userId);
         PhysicalPerson GetPhysicalPersonById(Guid id);
+        PhysicalPerson GetPhysicalPersonByCPF(string cpf);
         PhysicalPerson CreatePhysicalPerson(PhysicalPerson physicalPerson);
-        PhysicalPerson UpdatePhysicalPerson(PhysicalPerson physicalPerson);
-        void DeletePhysicalPerson(Guid id);
+        void UpdatePhysicalPerson();
+        void DeletePhysicalPerson(PhysicalPerson physicalPerson);
     }
 }

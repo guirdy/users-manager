@@ -19,9 +19,15 @@ namespace UsersManagerApi.Repositories
             return physicalPersons;
         }
 
-        public PhysicalPerson GetPhysicalPersonById(Guid id)
+        public PhysicalPerson? GetPhysicalPersonById(Guid id)
         {
-            PhysicalPerson physicalPerson = _context.PhysicalPersons.FirstOrDefault(person => person.Id == id);
+            PhysicalPerson? physicalPerson = _context.PhysicalPersons.FirstOrDefault(person => person.Id == id);
+            return physicalPerson;
+        }
+
+        public PhysicalPerson? GetPhysicalPersonByCPF(string cpf)
+        {
+            PhysicalPerson? physicalPerson = _context.PhysicalPersons.FirstOrDefault(person => person.CPF == cpf);
             return physicalPerson;
         }
 
@@ -33,23 +39,15 @@ namespace UsersManagerApi.Repositories
             return physicalPerson;
         }
 
-        public PhysicalPerson UpdatePhysicalPerson(PhysicalPerson physicalPerson)
+        public void UpdatePhysicalPerson()
         {
-            _context.PhysicalPersons.Update(physicalPerson);
             _context.SaveChanges();
-
-            return physicalPerson;
         }
 
-        public void DeletePhysicalPerson(Guid id)
+        public void DeletePhysicalPerson(PhysicalPerson physicalPerson)
         {
-            var physicalPerson = _context.PhysicalPersons.FirstOrDefault(person => person.Id == id);
-
-            if (physicalPerson != null)
-            {
-                _context.PhysicalPersons.Remove(physicalPerson);
-                _context.SaveChanges();
-            }
+            _context.PhysicalPersons.Remove(physicalPerson);
+            _context.SaveChanges();
         }   
     }
 }

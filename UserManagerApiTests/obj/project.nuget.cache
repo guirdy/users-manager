@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "z+Iiz4D6Ul5c7m537r2XIWGYPWq5TRNekPKDfaSWd5DAHwL5zs7qmsIFcDjHVi1s8hJ8yH5ph6R21lP7swucmg==",
+  "dgSpecHash": "wcC/KSeCG5CmH/5D29Uh2pNJj8TJSDa/RCenPAtl0ypFsFY4FyW+z/HtO7bCTpvWzOJWAp436JzeOCeDCRR7jg==",
   "success": true,
   "projectFilePath": "C:\\Users\\guilh\\OneDrive\\Desktop\\.NET\\UserManagerApiTests\\UserManagerApiTests.csproj",
   "expectedPackageFiles": [
@@ -59,6 +59,7 @@
     "C:\\Users\\guilh\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\6.0.0\\pomelo.entityframeworkcore.mysql.6.0.0.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\guilh\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\6.5.0\\swashbuckle.aspnetcore.annotations.6.5.0.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
