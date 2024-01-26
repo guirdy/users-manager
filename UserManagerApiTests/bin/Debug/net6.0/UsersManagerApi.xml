@@ -4,7 +4,62 @@
         <name>UsersManagerApi</name>
     </assembly>
     <members>
-        <member name="M:UsersManagerApi.Controllers.UserController.UpdateUserData(System.String,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{UsersManagerApi.Data.Dtos.User.UpdateUserDto})">
+        <member name="M:UsersManagerApi.Controllers.AddressController.UpdateAddress(System.String,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{UsersManagerApi.Data.Dtos.AddressDtos.UpdateAddressDto})">
+            <remarks>
+                <summary>
+                    Somente "op", "path" e "value são obrigatórios.
+                </summary>
+                <summary>
+                    "op" é a operação de patch, deve ser utilizado o valor "replace".
+                </summary>
+                <summary>
+                    "path" é o nome do atributo a ser atualizado.
+                </summary>
+                <summary>
+                    "value" o novo valor atualizado do atributo.
+                </summary>
+            </remarks>
+        </member>
+        <member name="M:UsersManagerApi.Controllers.ContactController.UpdateContact(System.String,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{UsersManagerApi.Data.Dtos.ContactDtos.UpdateContactDto})">
+            <remarks>
+                <summary>
+                    Somente "op", "path" e "value são obrigatórios.
+                </summary>
+                <summary>
+                    "op" é a operação de patch, deve ser utilizado o valor "replace".
+                </summary>
+                <summary>
+                    "path" é o nome do atributo a ser atualizado.
+                </summary>
+                <summary>
+                    "value" o novo valor atualizado do atributo.
+                </summary>
+            </remarks>
+        </member>
+        <member name="M:UsersManagerApi.Controllers.PhysicalPersonController.Update(System.String,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{UsersManagerApi.Data.Dtos.PhysicalPersonDtos.UpdatePhysicalPersonDto})">
+            <remarks>
+                <summary>
+                    Somente "op", "path" e "value são obrigatórios.
+                </summary>
+                <summary>
+                    "op" é a operação de patch, deve ser utilizado o valor "replace".
+                </summary>
+                <summary>
+                    "path" é o nome do atributo a ser atualizado.
+                </summary>
+                <summary>
+                    "value" o novo valor atualizado do atributo.
+                </summary>
+            </remarks>
+        </member>
+        <member name="M:UsersManagerApi.Controllers.UserController.CreateUser(UsersManagerApi.Data.Dtos.UserDtos.CreateUserDto)">
+            <remarks>
+                <summary>
+                    "physicalPersons" é opcional.
+                </summary>
+            </remarks>
+        </member>
+        <member name="M:UsersManagerApi.Controllers.UserController.UpdateUserData(System.String,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{UsersManagerApi.Data.Dtos.UserDtos.UpdateUserDto})">
             <remarks>
                 <summary>
                     Somente "op", "path" e "value são obrigatórios.

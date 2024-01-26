@@ -37,8 +37,6 @@ namespace UsersManagerApi.Controllers
                 return NotFound("Usuário não encontrado.");
             }
 
-            userDto.PhysicalPersons = _physicalPersonServices.GetAllPhysicalPersons(parseId);
-
             return Ok(userDto);
         }
 

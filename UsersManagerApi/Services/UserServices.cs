@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Security.Cryptography;
 using UsersManagerApi.Data.Dtos.UserDtos;
 using UsersManagerApi.Model;
 using UsersManagerApi.Repositories.Interfaces;
@@ -35,8 +36,10 @@ namespace UsersManagerApi.Services
 
         public GetUserDto CreateUser(CreateUserDto userDto)
         {
-            userDto.Password = _pwdHash.HashPassword(userDto.Password);
+            byte[] pwdSalt = RandomNumberGenerator.GetBytes(128 / 8);
+            userDto.Password = _pwdHash.HashPassword(userDto.Password, pwdSalt);
             User user = _mapper.Map<User>(userDto);
+            user.PwdSalt = pwdSalt;
             User createdUser = _userRepository.CreateUser(user);
 
             return _mapper.Map<GetUserDto>(createdUser);
@@ -49,6 +52,7 @@ namespace UsersManagerApi.Services
         {
             User originalUser = _userRepository.GetUserById(user.Id);
             UpdateUserDto userToUpdate = _mapper.Map<UpdateUserDto>(originalUser);
+            userToUpdate.UpdatedAt = DateTime.Now;
 
             patch.ApplyTo(userToUpdate, modelState);
 

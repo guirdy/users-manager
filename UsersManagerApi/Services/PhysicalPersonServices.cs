@@ -87,6 +87,7 @@ namespace UsersManagerApi.Services
         {
             PhysicalPerson originalPhysicalPerson = _repository.GetPhysicalPersonById(physicalPersonDto.Id);
             UpdatePhysicalPersonDto physicalPersonToUpdate = _mapper.Map<UpdatePhysicalPersonDto>(originalPhysicalPerson);
+            physicalPersonToUpdate.UpdatedAt = DateTime.Now;
 
             patch.ApplyTo(physicalPersonToUpdate, modelState);
 

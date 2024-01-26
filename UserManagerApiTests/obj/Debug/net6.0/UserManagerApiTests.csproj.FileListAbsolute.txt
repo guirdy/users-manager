@@ -125,3 +125,12 @@ C:\Users\guilh\OneDrive\Desktop\.NET\UserManagerApiTests\obj\Debug\net6.0\refint
 C:\Users\guilh\OneDrive\Desktop\.NET\UserManagerApiTests\obj\Debug\net6.0\UserManagerApiTests.pdb
 C:\Users\guilh\OneDrive\Desktop\.NET\UserManagerApiTests\obj\Debug\net6.0\UserManagerApiTests.genruntimeconfig.cache
 C:\Users\guilh\OneDrive\Desktop\.NET\UserManagerApiTests\obj\Debug\net6.0\ref\UserManagerApiTests.dll
+C:\Users\guilh\OneDrive\Desktop\.NET\UserManagerApiTests\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\guilh\OneDrive\Desktop\.NET\UserManagerApiTests\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\guilh\OneDrive\Desktop\.NET\UserManagerApiTests\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\guilh\OneDrive\Desktop\.NET\UserManagerApiTests\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\guilh\OneDrive\Desktop\.NET\UserManagerApiTests\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\guilh\OneDrive\Desktop\.NET\UserManagerApiTests\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\guilh\OneDrive\Desktop\.NET\UserManagerApiTests\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\guilh\OneDrive\Desktop\.NET\UserManagerApiTests\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\guilh\OneDrive\Desktop\.NET\UserManagerApiTests\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

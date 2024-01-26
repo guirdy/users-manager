@@ -46,6 +46,7 @@ namespace UsersManagerApi.Services
         {
             Address originalAddress = _repository.GetAddressById(addressDto.Id);
             UpdateAddressDto addressToUpdate = _mapper.Map<UpdateAddressDto>(originalAddress);
+            addressToUpdate.UpdatedAt = DateTime.Now;
 
             patch.ApplyTo(addressToUpdate, modelState);
 

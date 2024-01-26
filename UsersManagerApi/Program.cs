@@ -1,6 +1,10 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using System.Text;
+using UsersManagerApi.Configurations;
 using UsersManagerApi.Data;
 using UsersManagerApi.Repositories;
 using UsersManagerApi.Repositories.Interfaces;
@@ -8,17 +12,24 @@ using UsersManagerApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add AppSettings configuration
+IConfiguration config = builder.Configuration;
+builder.Services.Configure<AppSettings>(config.GetSection("AppSettings"));
+
+var key = Encoding.ASCII.GetBytes(config.GetSection("AppSettings:JwtSecret").Value);
+
 // Add Controllers and NewtonsoftJson
 builder.Services.AddControllers().AddNewtonsoftJson();
 
-// Register the Swagger generator, and xml comments
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
+// Add Cors
+builder.Services.AddCors(x =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "User Manager API", Version = "v1" });
-    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-    c.IncludeXmlComments(xmlPath);
+    x.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
 });
 
 // Add Database Context
@@ -36,10 +47,37 @@ builder.Services.AddScoped<UserServices>();
 builder.Services.AddScoped<PhysicalPersonServices>();
 builder.Services.AddScoped<ContactServices>();
 builder.Services.AddScoped<AddressServices>();
+builder.Services.AddScoped<AuthServices>();
+builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPhysicalPersonRepository, PhysicalPersonRepository>();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
 builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+
+// Add Authentication JWT
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
+
+// Register the Swagger generator, and xml comments
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "User Manager API", Version = "v1" });
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+});
 
 var app = builder.Build();
 

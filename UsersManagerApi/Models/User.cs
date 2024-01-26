@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography;
 
 namespace UsersManagerApi.Model
 {
@@ -16,6 +17,7 @@ namespace UsersManagerApi.Model
         public string Email { get; set; }
         [Required(ErrorMessage = "Senha é obrigatória.")]
         public string Password { get; set; }
+        public byte[] PwdSalt { get; set; }
         [Required(ErrorMessage = "Telefone é obrigatório.")]
         public string Phone { get; set; }
         public List<PhysicalPerson>? PhysicalPersons { get; set; }

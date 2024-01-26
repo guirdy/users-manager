@@ -46,6 +46,7 @@ namespace UsersManagerApi.Services
         {
             Contact originalContact = _contactRepository.GetContactById(contactDto.Id);
             UpdateContactDto contactToUpdate = _mapper.Map<UpdateContactDto>(originalContact);
+            contactToUpdate.UpdatedAt = DateTime.Now;
 
             patch.ApplyTo(contactToUpdate, modelState);
 
