@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using UsersManagerApi.Models;
 using UsersManagerApi.Services;
 
@@ -17,6 +18,7 @@ namespace UsersManagerApi.Controllers
 
         [HttpPost]
         [Route("login")]
+        [AllowAnonymous]
         public ActionResult<AuthResponse> Authenticate([FromBody] AuthCredentials credentials)
         {
             var result = _authServices.Authenticate(credentials);

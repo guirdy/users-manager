@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.JsonPatch;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using UsersManagerApi.Data.Dtos.UserDtos;
 using UsersManagerApi.Data.SwaggerContracts;
@@ -11,18 +12,17 @@ namespace UsersManagerApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserServices _userServices;
-        private readonly PhysicalPersonServices _physicalPersonServices;
 
-        public UserController(UserServices userServices, PhysicalPersonServices physicalPersonServices)
+        public UserController(UserServices userServices)
         {
             _userServices = userServices;
-            _physicalPersonServices = physicalPersonServices;
         }
 
         [HttpGet("{userId}", Name = "GetUserById")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserContract))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize]
         public IActionResult GetUserById([FromRoute] string userId)
         {
             if (!Guid.TryParse(userId, out var parseId))
@@ -48,6 +48,7 @@ namespace UsersManagerApi.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [AllowAnonymous]
         public IActionResult CreateUser(
             [FromBody] CreateUserDto userDto)
         {
@@ -80,6 +81,7 @@ namespace UsersManagerApi.Controllers
         [HttpPatch("{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize]
         public IActionResult UpdateUserData(
             [FromRoute] string userId,
             [FromBody] JsonPatchDocument<UpdateUserDto> patch)
@@ -105,6 +107,7 @@ namespace UsersManagerApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize]
         public IActionResult DeleteUser ([FromRoute] string userId)
         {
             if (!Guid.TryParse(userId, out var parseId))

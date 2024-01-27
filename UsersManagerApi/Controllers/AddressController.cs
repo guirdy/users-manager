@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.JsonPatch;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using UsersManagerApi.Data.Dtos.AddressDtos;
 using UsersManagerApi.Data.Dtos.PhysicalPersonDtos;
@@ -11,6 +12,7 @@ namespace UsersManagerApi.Controllers
 {
     [ApiController]
     [Route("api/v1")]
+    [Authorize]
     public class AddressController : ControllerBase
     {
         private readonly AddressServices _service;

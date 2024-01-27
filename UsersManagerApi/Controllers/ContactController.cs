@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.JsonPatch;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using UsersManagerApi.Data.Dtos.AddressDtos;
 using UsersManagerApi.Data.Dtos.ContactDtos;
@@ -9,6 +10,7 @@ namespace UsersManagerApi.Controllers
 {
     [ApiController]
     [Route("api/v1")]
+    [Authorize]
     public class ContactController : ControllerBase
     {
         private readonly ContactServices _contactServices;
