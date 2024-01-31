@@ -3,11 +3,14 @@ import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-profile',
+  selector: 'app-physical-person',
   standalone: true,
-  imports: [SidebarComponent, RouterModule],
-  templateUrl: './profile.component.html'
+  imports: [
+    SidebarComponent,
+    RouterModule
+  ],
+  templateUrl: './physical-person.component.html'
 })
-export class ProfileComponent {
+export class PhysicalPersonComponent {
 
 }

@@ -57,32 +57,36 @@
   </div>
 
   <div class="flex flex-col gap-4">
-    <label for="password">Senha</label>
-    <input
-      type="password"
-      id="password"
-      placeholder="•••••••"
-      required
-      [formControl]="$any(registerForm).get('password')"
-      class="p-2 border rounded-md"
-    />
-    @if(registerForm.get('password')?.hasError('required') &&
-    registerForm.get('password')?.touched) {
-    <div class="error-message">Senha é obrigatória.</div>
-    }
+    <div class="flex flex-col">
+      <label for="password">Senha</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="•••••••"
+        required
+        [formControl]="$any(registerForm).get('password')"
+        class="p-2 border rounded-md"
+      />
+      @if(registerForm.get('password')?.hasError('required') &&
+      registerForm.get('password')?.touched) {
+      <div class="error-message">Senha é obrigatória.</div>
+      }
+    </div>
 
-    <label for="repeat-password">Repita a senha</label>
-    <input
-      type="password"
-      id="repeat-password"
-      placeholder="•••••••"
-      required
-      [formControl]="$any(registerForm).get('repeatPassword')"
-      class="p-2 border rounded-md"
-    />
-    @if(passwordIsNotEqual) {
-    <div class="error-message">As senhas não condizem.</div>
-    }
+    <div class="flex flex-col">
+      <label for="repeat-password">Repita a senha</label>
+      <input
+        type="password"
+        id="repeat-password"
+        placeholder="•••••••"
+        required
+        [formControl]="$any(registerForm).get('repeatPassword')"
+        class="p-2 border rounded-md"
+      />
+      @if(passwordIsNotEqual) {
+      <div class="error-message">As senhas não condizem.</div>
+      }
+    </div>
   </div>
 
   <div class="flex flex-col">
@@ -103,7 +107,7 @@
 
   <button
     type="submit"
-    class="px-4 py-2 font-semibold bg-orange-500 border-none rounded-md text-white hover:bg-orange-700 transition-all"
+    class="button-orange"
   >
     Cadastrar
   </button>
