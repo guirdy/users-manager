@@ -1,0 +1,162 @@
+<main class="flex bg-black min-h-screen">
+  <app-sidebar class="max-w-56 w-full max-h-screen" />
+  <div class="bg-white w-full p-6 overflow-auto max-h-screen">
+    <div class="flex gap-2 items-center mb-6">
+      <a routerLink="/physical-person" class="text-gray-700 text-sm">
+        Pessoas física
+      </a>
+      <span>&#62;</span>
+      <span class="text-gray-400 text-sm"> Visualizar </span>
+    </div>
+
+    <a routerLink="/physical-person/edit" class="button-green"> Editar </a>
+
+    <div class="mb-4 mt-6">
+      <strong class="mb-2">Nome completo</strong>
+      <p>Guilherme Leandro</p>
+    </div>
+    <div class="mb-4">
+      <strong class="mb-2">E-mail</strong>
+      <p>gui&#64;gui.com</p>
+    </div>
+    <div class="mb-4">
+      <strong class="mb-2">Nascimento</strong>
+      <p>20/09/2010</p>
+    </div>
+    <div class="mb-4">
+      <strong class="mb-2">CPF</strong>
+      <p>707.707.707-09</p>
+    </div>
+    <div class="mb-4">
+      <strong class="mb-2">RG</strong>
+      <p>12.233.233-8</p>
+    </div>
+
+    <strong>Endereços:</strong>
+    <div class="flex gap-2 flex-wrap">
+      <div class="flex justify-between gap-6 rounded-md p-3 border max-w-md">
+        <div>
+          <p>Rua bla, 123 - 01233-123</p>
+          <p>São Paulo - SP</p>
+        </div>
+        <button>X</button>
+      </div>
+      <div class="flex justify-between gap-6 rounded-md p-3 border max-w-md">
+        <div>
+          <p>Rua bla, 123 - 01233-123</p>
+          <p>São Paulo - SP</p>
+        </div>
+        <button>X</button>
+      </div>
+      <div class="flex justify-between gap-6 rounded-md p-3 border max-w-md">
+        <div>
+          <p>Rua bla, 123 - 01233-123</p>
+          <p>São Paulo - SP</p>
+        </div>
+        <button>X</button>
+      </div>
+    </div>
+
+    <div class="flex mt-6">
+      <div class="flex gap-2 mb-3">
+        <div class="flex flex-col w-full">
+          <label for="street">Rua</label>
+          <input
+            type="text"
+            id="street"
+            required
+            class="p-2 border rounded-md"
+          />
+        </div>
+        <div class="flex flex-col max-w-sm">
+          <label for="number">Número</label>
+          <input
+            type="text"
+            id="number"
+            required
+            class="p-2 border rounded-md"
+          />
+        </div>
+        <div class="flex flex-col w-full">
+          <label for="postalCode">CEP</label>
+          <input
+            type="text"
+            id="postalCode"
+            required
+            class="p-2 border rounded-md"
+          />
+        </div>
+        <div class="flex flex-col max-w-sm">
+          <label for="complement">Complemento</label>
+          <input
+            type="text"
+            id="complement"
+            required
+            class="p-2 border rounded-md"
+          />
+        </div>
+        <div class="flex items-end">
+          <button class="button-green">Adicionar</button>
+        </div>
+      </div>
+    </div>
+
+    <strong class="block mt-4">Contatos:</strong>
+    <div class="flex gap-2 flex-wrap">
+      <div class="flex justify-between gap-6 rounded-md p-3 border max-w-md">
+        <div>
+          <p>Fulano de Tal</p>
+          <p>E-mail: fulano&#64;tal.com</p>
+        </div>
+        <button>X</button>
+      </div>
+      <div class="flex justify-between gap-6 rounded-md p-3 border max-w-md">
+        <div>
+          <p>Ciclano de Tal</p>
+          <p>Telefone: 1170707070</p>
+        </div>
+        <button>X</button>
+      </div>
+    </div>
+
+    <div class="flex gap-2 mt-4">
+      <div class="flex gap-2">
+        <div class="flex flex-col">
+          <label for="contactName">Nome</label>
+          <input
+            type="text"
+            id="contactName"
+            required
+            class="p-2 border rounded-md"
+          />
+        </div>
+        <div class="flex flex-col max-w-sm">
+          <label for="contactType">Tipo</label>
+          <select
+            name="contactType"
+            id="contactType"
+            class="p-2 border rounded-md"
+          >
+            <option value=""></option>
+            <option value="Email">E-mail</option>
+            <option value="Phone">Telefone</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex flex-col">
+        <label for="emailOrPhone">Contato</label>
+        <input
+          type="text"
+          id="emailOrPhone"
+          required
+          class="p-2 border rounded-md"
+        />
+      </div>
+
+      <div class="flex justify-end mt-6">
+        <button type="button" class="button-green">Adicionar</button>
+      </div>
+    </div>
+  </div>
+</main>
