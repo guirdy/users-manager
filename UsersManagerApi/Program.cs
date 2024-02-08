@@ -118,11 +118,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// app.UseHttpsRedirection();
+app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseRouting();
 app.UseAuthorization();
-app.UseAuthentication();
-
 app.MapControllers();
 
 app.Run();

@@ -70,6 +70,20 @@
         </div>
       </div>
 
+      <!-- Lista de endereços -->
+      <div class="flex gap-2 flex-wrap">
+        <div
+          *NgFor="let address of addresses; index as i"
+          class="flex justify-between gap-6 rounded-md p-3 border max-w-md"
+        >
+          <div>
+            <p>{{address.street}}, {{address.number}} - {{address.postalCode}}</p>
+            <p>{{address.state}} - {{address.city}}</p>
+          </div>
+          <button>X</button>
+        </div>
+      </div>
+
       <div class="border rounded-md p-6 mt-6">
         <strong class="mb-3 block">Endereços</strong>
 
@@ -154,7 +168,11 @@
           </div>
           <div class="flex flex-col max-w-sm">
             <label for="contactType">Tipo</label>
-            <select name="contactType" id="contactType" class="p-2 border rounded-md">
+            <select
+              name="contactType"
+              id="contactType"
+              class="p-2 border rounded-md"
+            >
               <option value=""></option>
               <option value="Email">E-mail</option>
               <option value="Phone">Telefone</option>
@@ -171,7 +189,6 @@
             class="p-2 border rounded-md"
           />
         </div>
-
 
         <div class="flex justify-end mt-6">
           <button type="button" class="button-green">Adicionar</button>
