@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AiXDzr7pToXNeE2JmjCgKJ3RLSGyDi/vVnhEmd6e2qefSPShPZO9ReoB8jAs+6ZGvlgz+BrsyJKTENN/L6Rh5w==",
+  "dgSpecHash": "na9Omrb1o/sQt+SIXI1p6h24pb/ag/D8b1TF8yBOTJifK50rTy5CnyZ3HrWPGdgpR0FFAVHnkoJqqWGXLP+3MA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\guilh\\OneDrive\\Desktop\\.NET\\UserManagerApiTests\\UserManagerApiTests.csproj",
+  "projectFilePath": "C:\\Users\\guilh\\OneDrive\\Desktop\\users-manager\\UserManagerApiTests\\UserManagerApiTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\guilh\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
